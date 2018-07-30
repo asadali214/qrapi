@@ -25,7 +25,6 @@ public class AdminResource {
 	@GET
 	@Path("/all")
 	public List<Account> getAllAccounts() {
-		
 		return genericService.getAllAccounts();
 	}
 }
