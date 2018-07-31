@@ -1,16 +1,32 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
 <hibernate-mapping>
-	<class name="com.gr.qrapi.core.model.Account" table="Account">
-		<id column="id" name="id" type="java.lang.Integer">
-			<generator class="native" />
-		</id>
-		<property column="name" name="name" type="java.lang.String" />
-		<property column="email_domain" name="emailDomain"
-			type="java.lang.String" />
-		<property column="time_zone" name="timeZoneCity"
-			type="java.lang.String" />
-	</class>
+    <class name="com.gr.qrapi.core.model.Account" table="ACCOUNT">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="emailDomain" type="java.lang.String">
+            <column name="EMAILDOMAIN" />
+        </property>
+        <property name="timeZoneCity" type="java.lang.String">
+            <column name="TIMEZONECITY" />
+        </property>
+        <bag name="contacts" inverse="false" table="CONTACT" lazy="false">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="com.gr.qrapi.core.model.Contact" />
+        </bag>
+        <bag name="alerts" inverse="false" table="ALERTPROFILE" lazy="false">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="com.gr.qrapi.core.model.AlertProfile" />
+        </bag>
+    </class>
 </hibernate-mapping>

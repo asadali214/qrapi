@@ -1,20 +1,44 @@
 package com.gr.qrapi.core.model;
 
+import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Account")
+public class Account implements Serializable{
+
+	/*
+	 * default version
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	private int id;
 
+	@Column(name = "Name")
 	private String name;
 
+	@Column(name = "Email_Domain")
 	private String emailDomain;
 
+	@Column(name = "TimeZoneCity")
 	private String timeZoneCity;
 
-	private ArrayList<Contact> contacts = new ArrayList<Contact>();
-
-	private ArrayList<AlertProfile> alerts = new ArrayList<AlertProfile>();
+	@OneToMany(mappedBy = "account")
+	private List<Contact> contacts;
+	
+	@OneToMany(mappedBy = "account")
+	private List<AlertProfile> alerts;
 
 	public Account() {
 
@@ -35,20 +59,20 @@ public class Account {
 		return id;
 	}
 
-	public ArrayList<Contact> getContacts() {
+	public List<Contact> getContacts() {
 		return contacts;
 	}
 
-	public void setContacts(ArrayList<Contact> contacts) {
+	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
 	
 
-	public ArrayList<AlertProfile> getAlerts() {
+	public List<AlertProfile> getAlerts() {
 		return alerts;
 	}
 
-	public void setAlerts(ArrayList<AlertProfile> alerts) {
+	public void setAlerts(List<AlertProfile> alerts) {
 		this.alerts = alerts;
 	}
 

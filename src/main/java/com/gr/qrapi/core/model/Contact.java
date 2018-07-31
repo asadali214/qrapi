@@ -1,26 +1,53 @@
 
 package com.gr.qrapi.core.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
 
-public class Contact {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Contact")
+public class Contact implements Serializable{
+	
+	/*
+	 * default version
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	private int id;
 
+	@Column(name = "first_name")
 	private String firstName;
 
+	@Column(name = "last_name")
 	private String lastName;
 
+	@Column(name = "email_address")
 	private String emailAddress;
 
+	@Column(name = "gender")
 	private String gender;
 
+	@Column(name = "phone_number")
 	private String phoneNumber;
 
+	@Column(name = "status")
 	private Boolean status;
 
-	private ArrayList<Address> addresses = new ArrayList<>();
+	@OneToMany(mappedBy = "contact")
+	private List<Address> addresses;
 
+	@ManyToOne
 	private Account account;
 
 	public Contact() {
@@ -97,11 +124,11 @@ public class Contact {
 		this.status = status;
 	}
 
-	public ArrayList<Address> getAddresses() {
+	public List<Address> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(ArrayList<Address> addresses) {
+	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
 

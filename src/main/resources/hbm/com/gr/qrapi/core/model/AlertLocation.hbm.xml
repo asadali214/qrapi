@@ -1,36 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
 <hibernate-mapping>
-	<class name="com.gr.qrapi.core.model.Account" table="Account">
-		<id column="id" name="id" type="java.lang.Integer">
-			<generator class="native" />
-		</id>
-		<property column="name" name="name" type="java.lang.String" />
-		<property column="email_domain" name="emailDomain"
-			type="java.lang.String" />
-		<property column="time_zone" name="timeZoneCity"
-			type="java.lang.String" />
-	</class>
-
-	<class name="com.gr.qrapi.core.model.Contact" table="Contact">
-		<id column="id" name="id" type="java.lang.Integer">
-			<generator class="native" />
-		</id>
-		<property column="first_name" name="firstName"
-			type="java.lang.String" />
-		<property column="last_name" name="lastName"
-			type="java.lang.String" />
-		<property column="email_address" name="emailAddress"
-			type="java.lang.String" />
-		<property column="gender" name="gender"
-			type="java.lang.String" />
-		<property column="phone_number" name="phoneNumber"
-			type="java.lang.String" />
-		<property column="status" name="status"
-			type="java.lang.Boolean" />
-		<property column="phone_number" name="phoneNumber"
-			type="java.lang.String" />
-	</class>
+    <class name="com.gr.qrapi.core.model.AlertLocation" table="ALERTLOCATION">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="country" type="java.lang.String">
+            <column name="COUNTRY" />
+        </property>
+        <many-to-one name="alert" class="com.gr.qrapi.core.model.AlertProfile" fetch="join">
+            <column name="ALERT" />
+        </many-to-one>
+    </class>
 </hibernate-mapping>

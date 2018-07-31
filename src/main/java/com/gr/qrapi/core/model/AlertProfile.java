@@ -1,15 +1,39 @@
 package com.gr.qrapi.core.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.List;
 
-public class AlertProfile {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "AlertProfile")
+public class AlertProfile implements Serializable{
+	
+	/*
+	 * default version
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	private int id;
+	
+	@Column(name = "name")
+	private String name;
 
+	@ManyToOne
 	private Account account;
 
-	private Collection<AlertLocation> locations = new ArrayList<AlertLocation>();
+	@OneToMany(mappedBy = "alert")
+	private List<AlertLocation> locations;
 
 	public AlertProfile() {
 
@@ -29,6 +53,14 @@ public class AlertProfile {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Account getAccount() {
 		return account;
 	}
@@ -37,11 +69,11 @@ public class AlertProfile {
 		this.account = account;
 	}
 
-	public Collection<AlertLocation> getLocations() {
+	public List<AlertLocation> getLocations() {
 		return locations;
 	}
 
-	public void setLocations(Collection<AlertLocation> locations) {
+	public void setLocations(List<AlertLocation> locations) {
 		this.locations = locations;
 	}
 

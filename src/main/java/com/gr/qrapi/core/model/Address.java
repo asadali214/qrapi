@@ -1,16 +1,42 @@
 package com.gr.qrapi.core.model;
 
-public class Address {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Address")
+public class Address implements Serializable{
+	
+	/*
+	 * default version
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
 	private int id;
 
+	@Column(name = "street_address")
 	private String streetAddress;
 
+	@Column(name = "city")
 	private String city;
-	
+
+	@Column(name = "state")
 	private String state;
 
+	@Column(name = "country")
 	private String country;
+	
+	@ManyToOne
+	private Contact contact;
 
 	public Address() {
 
@@ -63,5 +89,15 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+	
+	
 
 }

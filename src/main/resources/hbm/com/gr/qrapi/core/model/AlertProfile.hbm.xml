@@ -1,36 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
 <hibernate-mapping>
-	<class name="com.gr.qrapi.core.model.Account" table="Account">
-		<id column="id" name="id" type="java.lang.Integer">
-			<generator class="native" />
-		</id>
-		<property column="name" name="name" type="java.lang.String" />
-		<property column="email_domain" name="emailDomain"
-			type="java.lang.String" />
-		<property column="time_zone" name="timeZoneCity"
-			type="java.lang.String" />
-	</class>
-
-	<class name="com.gr.qrapi.core.model.Contact" table="Contact">
-		<id column="id" name="id" type="java.lang.Integer">
-			<generator class="native" />
-		</id>
-		<property column="first_name" name="firstName"
-			type="java.lang.String" />
-		<property column="last_name" name="lastName"
-			type="java.lang.String" />
-		<property column="email_address" name="emailAddress"
-			type="java.lang.String" />
-		<property column="gender" name="gender"
-			type="java.lang.String" />
-		<property column="phone_number" name="phoneNumber"
-			type="java.lang.String" />
-		<property column="status" name="status"
-			type="java.lang.Boolean" />
-		<property column="phone_number" name="phoneNumber"
-			type="java.lang.String" />
-	</class>
+    <class name="com.gr.qrapi.core.model.AlertProfile" table="ALERTPROFILE">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <many-to-one name="account" class="com.gr.qrapi.core.model.Account" fetch="join">
+            <column name="ACCOUNT" />
+        </many-to-one>
+        <bag name="locations" table="ALERTLOCATION" inverse="false" lazy="false">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="com.gr.qrapi.core.model.AlertLocation" />
+		</bag>
+    </class>
 </hibernate-mapping>
