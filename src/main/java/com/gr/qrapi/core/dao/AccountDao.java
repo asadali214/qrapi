@@ -1,15 +1,20 @@
 package com.gr.qrapi.core.dao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.gr.common.dao.GenericDao;
 import com.gr.qrapi.core.model.Account;
 
-/**
- * @author ufarooq
- */
 public interface AccountDao extends GenericDao<Account, Integer> {
 
-	List<Account> getAllAccounts();
+	public ArrayList<Account> viewAllAccounts();
+
+	public int addNewAccount(Account account);
+
+	public Account updateAccount(int id, Account accountNew);
+
+	public void deleteAccount(int id);
+
+	public Account getAccount(int id);
 
 }

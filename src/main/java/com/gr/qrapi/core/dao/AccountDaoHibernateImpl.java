@@ -1,6 +1,6 @@
 package com.gr.qrapi.core.dao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -21,18 +21,46 @@ public class AccountDaoHibernateImpl extends AbstractHibernateDao<Account, Integ
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Account> getAllAccounts() {
-		
+	public ArrayList<Account> viewAllAccounts() {
+		Session session=null;
 		try {
-			Session session = getSession();
+			session = getSession();
 			Criteria criteria = session.createCriteria(Account.class);
 			criteria.setMaxResults(100);
-
-			List<Account> accounts = (List<Account>) criteria.list();
-
+			
+			ArrayList<Account> accounts = (ArrayList<Account>) criteria.list();
+			
 			return accounts;
 		} catch (Exception aex) {
 			throw new DaoException(aex);
+		} finally {
+			closeSession(session);
+			
 		}
 	}
+
+	@Override
+	public int addNewAccount(Account account) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Account updateAccount(int id, Account accountNew) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteAccount(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Account getAccount(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

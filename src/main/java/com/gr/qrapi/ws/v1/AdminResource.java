@@ -27,4 +27,6 @@ public class AdminResource {
 	public List<Account> getAllAccounts() {
 		return genericService.getAllAccounts();
 	}
+	
+	
 }
