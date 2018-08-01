@@ -2,14 +2,8 @@ package com.gr.qrapi.core.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Address")
+//@Entity
+//@Table(name = "Address")
 public class Address implements Serializable{
 	
 	/*
@@ -17,21 +11,21 @@ public class Address implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
+//	@Id
+//	@GeneratedValue
+//	@Column(name = "id")
 	private int id;
 
-	@Column(name = "street_address")
+//	@Column(name = "street_address")
 	private String streetAddress;
 
-	@Column(name = "city")
+//	@Column(name = "city")
 	private String city;
 
-	@Column(name = "state")
+//	@Column(name = "state")
 	private String state;
 
-	@Column(name = "country")
+//	@Column(name = "country")
 	private String country;
 
 	public Address() {

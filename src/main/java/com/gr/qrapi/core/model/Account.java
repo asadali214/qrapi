@@ -1,18 +1,10 @@
 package com.gr.qrapi.core.model;
 
-import java.util.List;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Account")
+//@Entity
+//@Table(name = "Account")
 public class Account implements Serializable{
 
 	/*
@@ -20,24 +12,24 @@ public class Account implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
+//	@Id
+//	@GeneratedValue
+//	@Column(name = "id")
 	private int id;
 
-	@Column(name = "Name")
+//	@Column(name = "Name")
 	private String name;
 
-	@Column(name = "Email_Domain")
+//	@Column(name = "Email_Domain")
 	private String emailDomain;
 
-	@Column(name = "TimeZoneCity")
+//	@Column(name = "TimeZoneCity")
 	private String timeZoneCity;
 
-	@OneToMany(mappedBy = "account")
+//	@OneToMany(mappedBy = "account")
 	private List<Contact> contacts;
 	
-	@OneToMany(mappedBy = "account")
+//	@OneToMany(mappedBy = "account")
 	private List<AlertProfile> alerts;
 
 	public Account() {

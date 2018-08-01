@@ -3,16 +3,9 @@ package com.gr.qrapi.core.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-
-@Entity
-@Table(name = "AlertProfile")
+//@Entity
+//@Table(name = "AlertProfile")
 public class AlertProfile implements Serializable{
 	
 	/*
@@ -20,25 +13,24 @@ public class AlertProfile implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
+//	@Id
+//	@GeneratedValue
+//	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "name")
+//	@Column(name = "name")
 	private String name;
 
 
-	@OneToMany(mappedBy = "alert")
+//	@OneToMany(mappedBy = "alert")
 	private List<AlertLocation> locations;
 
 	public AlertProfile() {
 
 	}
 
-	public AlertProfile(int id,String name) {
+	public AlertProfile(String name) {
 		super();
-		this.id = id;
 		this.name=name;
 	}
 

@@ -13,7 +13,7 @@ public interface AccountDao extends GenericDao<Account, Integer> {
 
 	public Account updateAccount(int id, Account accountNew);
 
-	public void deleteAccount(int id);
+	public int  deleteAccount(int id);
 
 	public Account getAccount(int id);
 
