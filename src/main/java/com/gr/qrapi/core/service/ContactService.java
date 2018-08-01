@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.ejb.Stateless;
 
 import com.gr.common.service.ServiceManager;
+import com.gr.qrapi.core.dao.ContactDaoHibernateImpl;
 import com.gr.qrapi.core.model.Contact;
 
 /**
@@ -19,39 +20,32 @@ public class ContactService implements ContactServiceLocal {
 
 	@Override
 	public ArrayList<Contact> viewAllContactsOfAccount(int AccountId) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContactDaoHibernateImpl.getDao().viewAllContactsOfAccount(AccountId);
 	}
 
 	@Override
 	public int addContactinAccount(Contact contact, int AccountID) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ContactDaoHibernateImpl.getDao().addContactinAccount(contact, AccountID);
 	}
 
 	@Override
 	public Contact updateContactOfAccount(int ContactId, Contact contactNew) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContactDaoHibernateImpl.getDao().updateContactOfAccount(ContactId, contactNew);
 	}
 
 	@Override
 	public int deleteContactOfAccount(int contactId) {
-		// TODO Auto-generated method stub
-		return 0;
-		
+		return ContactDaoHibernateImpl.getDao().deleteContactOfAccount(contactId);
 	}
 
 	@Override
 	public void deleteAllContactsOfAccount(int AccountId) {
-		// TODO Auto-generated method stub
-		
+		ContactDaoHibernateImpl.getDao().deleteAllContactsOfAccount(AccountId);
 	}
 
 	@Override
 	public Contact getContact(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContactDaoHibernateImpl.getDao().getContact(id);
 	}
 
 }

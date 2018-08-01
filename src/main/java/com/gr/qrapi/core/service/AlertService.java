@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import com.gr.common.service.ServiceManager;
+import com.gr.qrapi.core.dao.AlertProfileDaoHibernateImpl;
 import com.gr.qrapi.core.model.AlertProfile;
 
 /**
@@ -19,32 +20,27 @@ public class AlertService implements AlertServiceLocal {
 
 	@Override
 	public List<AlertProfile> getAllAlerts() {
-		// TODO Auto-generated method stub
-		return null;
+		return AlertProfileDaoHibernateImpl.getDao().getAllAlerts();
 	}
 
 	@Override
 	public int addNewAlert(AlertProfile alert) {
-		// TODO Auto-generated method stub
-		return 0;
+		return AlertProfileDaoHibernateImpl.getDao().addNewAlert(alert);
 	}
 
 	@Override
 	public AlertProfile updateAlert(int id, AlertProfile alert) {
-		// TODO Auto-generated method stub
-		return null;
+		return AlertProfileDaoHibernateImpl.getDao().updateAlert(id, alert);
 	}
 
 	@Override
 	public int deleteAlert(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return AlertProfileDaoHibernateImpl.getDao().deleteAlert(id);
 	}
 
 	@Override
 	public AlertProfile getAlert(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return AlertProfileDaoHibernateImpl.getDao().getAlert(id);
 	}
 
 	
