@@ -19,8 +19,5 @@
         <property name="country" type="java.lang.String">
             <column name="COUNTRY" />
         </property>
-        <many-to-one name="contact" class="com.gr.qrapi.core.model.Contact" fetch="join">
-            <column name="CONTACT" />
-        </many-to-one>
     </class>
 </hibernate-mapping>

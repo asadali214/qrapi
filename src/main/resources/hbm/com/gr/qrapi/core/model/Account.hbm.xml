@@ -18,13 +18,13 @@
         </property>
         <bag name="contacts" inverse="false" table="CONTACT" lazy="false">
             <key>
-                <column name="ID" />
+                <column name="ACCOUNT" />
             </key>
             <one-to-many class="com.gr.qrapi.core.model.Contact" />
         </bag>
         <bag name="alerts" inverse="false" table="ALERTPROFILE" lazy="false">
             <key>
-                <column name="ID" />
+                <column name="ACCOUNT" />
             </key>
             <one-to-many class="com.gr.qrapi.core.model.AlertProfile" />
         </bag>

@@ -10,12 +10,9 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>
-        <many-to-one name="account" class="com.gr.qrapi.core.model.Account" fetch="join">
-            <column name="ACCOUNT" />
-        </many-to-one>
-        <bag name="locations" table="ALERTLOCATION" inverse="false" lazy="false">
+        <bag name="locations" inverse="false" table="ALERTLOCATION"   lazy="false">
             <key>
-                <column name="ID" />
+                <column name="ALERT" />
             </key>
             <one-to-many class="com.gr.qrapi.core.model.AlertLocation" />
 		</bag>

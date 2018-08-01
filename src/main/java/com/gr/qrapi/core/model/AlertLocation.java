@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,21 +27,16 @@ public class AlertLocation implements Serializable{
 	
 	@Column(name = "country")
 	private String country;
-	
-	@ManyToOne
-	private AlertProfile alert;
-	
 
 	public AlertLocation() {
 		
 	}
 
-	public AlertLocation(int id, String city, String country, AlertProfile alert) {
+	public AlertLocation(int id, String city, String country) {
 		super();
 		this.id = id;
 		this.city = city;
 		this.country = country;
-		this.alert = alert;
 	}
 
 	public int getId() {
@@ -67,14 +61,6 @@ public class AlertLocation implements Serializable{
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	public AlertProfile getAlert() {
-		return alert;
-	}
-
-	public void setAlert(AlertProfile alert) {
-		this.alert = alert;
 	}
 	
 	

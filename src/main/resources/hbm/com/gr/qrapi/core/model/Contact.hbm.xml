@@ -27,12 +27,9 @@
         </property>
         <bag name="addresses" inverse="false" table="ADDRESS" lazy="false">
             <key>
-                <column name="ID" />
+                <column name="CONTACT" />
             </key>
             <one-to-many class="com.gr.qrapi.core.model.Address" />
         </bag>
-        <many-to-one name="account" class="com.gr.qrapi.core.model.Account" fetch="join">
-            <column name="ACCOUNT" />
-        </many-to-one>
     </class>
 </hibernate-mapping>

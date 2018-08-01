@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,8 +28,6 @@ public class AlertProfile implements Serializable{
 	@Column(name = "name")
 	private String name;
 
-	@ManyToOne
-	private Account account;
 
 	@OneToMany(mappedBy = "alert")
 	private List<AlertLocation> locations;
@@ -39,10 +36,10 @@ public class AlertProfile implements Serializable{
 
 	}
 
-	public AlertProfile(int id, Account account) {
+	public AlertProfile(int id,String name) {
 		super();
 		this.id = id;
-		this.account = account;
+		this.name=name;
 	}
 
 	public int getId() {
@@ -59,14 +56,6 @@ public class AlertProfile implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	public List<AlertLocation> getLocations() {

@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -47,8 +46,6 @@ public class Contact implements Serializable{
 	@OneToMany(mappedBy = "contact")
 	private List<Address> addresses;
 
-	@ManyToOne
-	private Account account;
 
 	public Contact() {
 
@@ -130,14 +127,6 @@ public class Contact implements Serializable{
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 }
