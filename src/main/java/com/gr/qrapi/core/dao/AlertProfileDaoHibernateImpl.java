@@ -1,12 +1,12 @@
 package com.gr.qrapi.core.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.gr.common.dao.AbstractHibernateDao;
 import com.gr.common.dao.DaoManager;
-import com.gr.qrapi.core.model.Contact;
+import com.gr.qrapi.core.model.AlertProfile;
 
-public class AlertProfileDaoHibernateImpl extends AbstractHibernateDao<Contact, Integer> implements ContactDao{
+public class AlertProfileDaoHibernateImpl extends AbstractHibernateDao<AlertProfile, Integer> implements AlertProfileDao{
 	
 	
 	public static AlertProfileDao getDao() {
@@ -14,37 +14,31 @@ public class AlertProfileDaoHibernateImpl extends AbstractHibernateDao<Contact, 
 	}
 
 	@Override
-	public ArrayList<Contact> viewAllContactsOfAccount(int AccountId) {
+	public List<AlertProfile> getAllAlerts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int addContactinAccount(Contact contact, int AccountID) {
+	public int addNewAlert(AlertProfile alert) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public Contact updateContactOfAccount(int ContactId, Contact contactNew) {
+	public AlertProfile updateAlert(int id, AlertProfile alert) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int deleteContactOfAccount(int contactId) {
+	public int deleteAlert(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void deleteAllContactsOfAccount(int AccountId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Contact getContact(int id) {
+	public AlertProfile getAlert(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
