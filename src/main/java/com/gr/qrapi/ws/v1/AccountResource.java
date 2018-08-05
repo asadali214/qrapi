@@ -61,7 +61,7 @@ public class AccountResource {
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/check/{user}/{pass}")
-	public String deleteAccount(@PathParam("user") String user, @PathParam("pass") String pass) {
+	public String checkLogin(@PathParam("user") String user, @PathParam("pass") String pass) {
 		return "Login is: " + service.checkLogin(user, pass);
 	}
 
