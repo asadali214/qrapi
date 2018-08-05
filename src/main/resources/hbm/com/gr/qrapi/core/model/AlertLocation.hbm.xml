@@ -13,5 +13,8 @@
         <property name="country" type="java.lang.String">
             <column name="COUNTRY" />
         </property>
+        <property name="alertId" type="int">
+            <column name="ALERT" />
+        </property>
     </class>
 </hibernate-mapping>

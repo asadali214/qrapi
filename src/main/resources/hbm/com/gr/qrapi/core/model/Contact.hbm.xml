@@ -25,6 +25,9 @@
         <property name="status" type="java.lang.Boolean">
             <column name="STATUS" />
         </property>
+        <property name="accountId" type="int">
+            <column name="ACCOUNT" />
+        </property>
         <bag name="addresses" inverse="false" table="ADDRESS" lazy="false">
             <key>
                 <column name="CONTACT" />

@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-//@Entity
-//@Table(name = "AlertProfile")
+
 public class AlertProfile implements Serializable{
 	
 	/*
@@ -13,16 +12,11 @@ public class AlertProfile implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue
-//	@Column(name = "id")
 	private int id;
 	
-//	@Column(name = "name")
 	private String name;
+	private int accountId;
 
-
-//	@OneToMany(mappedBy = "alert")
 	private List<AlertLocation> locations;
 
 	public AlertProfile() {
@@ -48,6 +42,14 @@ public class AlertProfile implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
 	public List<AlertLocation> getLocations() {

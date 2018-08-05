@@ -19,47 +19,50 @@ import com.gr.qrapi.core.service.AccountServiceLocal;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AccountResource {
 
-	AccountServiceLocal genericService = AccountService.getService();
+	AccountServiceLocal service = AccountService.getService();
 
 	@GET
 	@Path("/get")
 	public List<Account> getAllAccounts() {
-		System.out.println("get all method called!!");
-		return genericService.getAllAccounts();
+		return service.getAllAccounts();
 	}
-	
+
 	@GET
 	@Path("/get/{id}")
 	public Account getAccount(@PathParam("id") int id) {
-		System.out.println("get method called!! "+id);
-		return genericService.getAccount(id);
+		return service.getAccount(id);
 	}
 
 	@PUT
-	@Path("/add/{name}/{email}/{timeZone}")
-	public String addNewAccount(@PathParam("name") String name, @PathParam("email") String email,
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/add/{userName}/{pass}/{name}/{email}/{timeZone}")
+	public String addNewAccount(@PathParam("userName") String username, @PathParam("pass") String pass,
+			@PathParam("name") String name, @PathParam("email") String email, @PathParam("timeZone") String timeZone) {
+		Account account = new Account(name, email, timeZone, username, pass);
+		return "{Added Account at id: " + service.addNewAccount(account) + "}";
+	}
+
+	@PUT
+	@Path("/update/{id}/{userName}/{pass}/{name}/{email}/{timeZone}")
+	public Account updateAccount(@PathParam("userName") String username, @PathParam("pass") String pass,
+			@PathParam("id") int id, @PathParam("name") String name, @PathParam("email") String email,
 			@PathParam("timeZone") String timeZone) {
-		System.out.println("add method called!! " +name+" "+email+" "+timeZone);
-		Account account = new Account(name, email, timeZone);
-		return "Added Account at id: "+genericService.addNewAccount(account);
+		Account account = new Account(name, email, timeZone, username, pass);
+		return service.updateAccount(id, account);
 	}
 
 	@PUT
-	@Path("/update/{id}/{name}/{email}/{timeZone}")
-	public Account updateAccount(@PathParam("id") int id, @PathParam("name") String name,
-			@PathParam("email") String email, @PathParam("timeZone") String timeZone) {
-		System.out.println("update method called!! "+id);
-		Account account = new Account(name, email, timeZone);
-		return genericService.updateAccount(id,account);
-	}
-	
-	@PUT
+	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{id}")
 	public String deleteAccount(@PathParam("id") int id) {
-		System.out.println("Delete method called!! "+id);
-		return "Deleted Account at id: "+genericService.deleteAccount(id);
+		return "{Deleted Account at id: " + service.deleteAccount(id) + "}";
 	}
-	
-	
+
+	@PUT
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/check/{user}/{pass}")
+	public String deleteAccount(@PathParam("user") String user, @PathParam("pass") String pass) {
+		return "Login is: " + service.checkLogin(user, pass);
+	}
 
 }

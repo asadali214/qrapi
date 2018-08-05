@@ -3,45 +3,42 @@ package com.gr.qrapi.core.model;
 import java.io.Serializable;
 import java.util.List;
 
-//@Entity
-//@Table(name = "Account")
-public class Account implements Serializable{
+public class Account implements Serializable {
 
 	/*
 	 * default version
 	 */
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue
-//	@Column(name = "id")
 	private int id;
 
-//	@Column(name = "Name")
 	private String name;
 
-//	@Column(name = "Email_Domain")
+	private String userName;
+
+	private String password;
+
 	private String emailDomain;
 
-//	@Column(name = "TimeZoneCity")
 	private String timeZoneCity;
 
-//	@OneToMany(mappedBy = "account")
+	//changed both to array list for testing
 	private List<Contact> contacts;
-	
-//	@OneToMany(mappedBy = "account")
-	private List<AlertProfile> alerts;
+
+	private List<AlertProfile> alerts;;
 
 	public Account() {
 
 	}
 
 	// Constructor to directly set all the properties:
-	public Account(String name, String emailDomain, String timeZoneCity) {
+	public Account(String name, String emailDomain, String timeZoneCity, String username, String pass) {
 		super();
 		this.name = name;
 		this.emailDomain = emailDomain;
 		this.timeZoneCity = timeZoneCity;
+		userName = username;
+		password = pass;
 
 	}
 
@@ -51,6 +48,22 @@ public class Account implements Serializable{
 		return id;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public List<Contact> getContacts() {
 		return contacts;
 	}
@@ -58,7 +71,6 @@ public class Account implements Serializable{
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
-	
 
 	public List<AlertProfile> getAlerts() {
 		return alerts;

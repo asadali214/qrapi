@@ -19,5 +19,11 @@
         <property name="country" type="java.lang.String">
             <column name="COUNTRY" />
         </property>
+        <property name="current" type="java.lang.Boolean">
+            <column name="CURRENT" />
+        </property>
+        <property name="contactId" type="int">
+            <column name="CONTACT" />
+        </property>
     </class>
 </hibernate-mapping>

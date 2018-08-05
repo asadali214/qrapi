@@ -2,8 +2,6 @@ package com.gr.qrapi.core.model;
 
 import java.io.Serializable;
 
-//@Entity
-//@Table(name = "Address")
 public class Address implements Serializable{
 	
 	/*
@@ -11,29 +9,25 @@ public class Address implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue
-//	@Column(name = "id")
 	private int id;
 
-//	@Column(name = "street_address")
 	private String streetAddress;
 
-//	@Column(name = "city")
 	private String city;
 
-//	@Column(name = "state")
 	private String state;
 
-//	@Column(name = "country")
 	private String country;
+	
+	private boolean current;
+	
+	private int contactId;
 
 	public Address() {
 
 	}
 
 	public Address(String streetAddress, String city, String state, String country) {
-		super();
 		this.streetAddress = streetAddress;
 		this.city = city;
 		this.state = state;
@@ -79,6 +73,24 @@ public class Address implements Serializable{
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+
+	public boolean getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
+
+	public int getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(int contactId) {
+		this.contactId = contactId;
+	}
+	
 	
 	
 

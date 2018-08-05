@@ -17,4 +17,5 @@ public interface AccountServiceLocal {
 	Account updateAccount(int id, Account account);
 	int deleteAccount(int id);
 	Account getAccount(int id);
+	boolean checkLogin(String userName,String pass);
 }

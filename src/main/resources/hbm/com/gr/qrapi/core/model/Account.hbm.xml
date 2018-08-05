@@ -10,6 +10,12 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" />
         </property>
+        <property name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
         <property name="emailDomain" type="java.lang.String">
             <column name="EMAILDOMAIN" />
         </property>

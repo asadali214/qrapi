@@ -1,16 +1,14 @@
 package com.gr.qrapi.core.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 
 import com.gr.common.service.ServiceManager;
 import com.gr.qrapi.core.dao.ContactDaoHibernateImpl;
+import com.gr.qrapi.core.model.Address;
 import com.gr.qrapi.core.model.Contact;
 
-/**
- * @author ufarooq
- */
 @Stateless
 public class ContactService implements ContactServiceLocal {
 
@@ -19,7 +17,7 @@ public class ContactService implements ContactServiceLocal {
 	}
 
 	@Override
-	public ArrayList<Contact> viewAllContactsOfAccount(int AccountId) {
+	public List<Contact> viewAllContactsOfAccount(int AccountId) {
 		return ContactDaoHibernateImpl.getDao().viewAllContactsOfAccount(AccountId);
 	}
 
@@ -47,5 +45,27 @@ public class ContactService implements ContactServiceLocal {
 	public Contact getContact(int id) {
 		return ContactDaoHibernateImpl.getDao().getContact(id);
 	}
+
+	@Override
+	public List<Address> viewAllAddressesOfContact(int ContactId) {
+		return ContactDaoHibernateImpl.getDao().viewAllAddressesOfContact(ContactId);
+	}
+	
+	@Override
+	public int addAddressinContact(Address address, int ContactID) {
+		return ContactDaoHibernateImpl.getDao().addAddressinContact(address, ContactID);
+	}
+
+	@Override
+	public Address updateAddress(int AddressId, Address addressNew) {
+		return ContactDaoHibernateImpl.getDao().updateAddress(AddressId, addressNew);
+	}
+
+	@Override
+	public int deleteAddressOfContact(int addressId) {
+		return ContactDaoHibernateImpl.getDao().deleteAddressOfContact(addressId);
+	}
+
+	
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gr.common.dao.AbstractHibernateDao;
 import com.gr.common.dao.DaoManager;
+import com.gr.qrapi.core.model.AlertLocation;
 import com.gr.qrapi.core.model.AlertProfile;
 
 public class AlertProfileDaoHibernateImpl extends AbstractHibernateDao<AlertProfile, Integer> implements AlertProfileDao{
@@ -41,6 +42,30 @@ public class AlertProfileDaoHibernateImpl extends AbstractHibernateDao<AlertProf
 	public AlertProfile getAlert(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<AlertLocation> viewAllLocationsOfAlerts(int alertId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int addLocationinAlert(AlertLocation location, int alertId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public AlertLocation updateLocation(int locationId, AlertLocation locationNew) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteLocationOfAlert(int locationId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

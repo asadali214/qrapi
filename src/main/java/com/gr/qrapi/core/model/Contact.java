@@ -4,47 +4,35 @@ package com.gr.qrapi.core.model;
 import java.io.Serializable;
 import java.util.List;
 
-//@Entity
-//@Table(name = "Contact")
-public class Contact implements Serializable{
-	
+public class Contact implements Serializable {
+
 	/*
 	 * default version
 	 */
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue
-//	@Column(name = "id")
 	private int id;
 
-//	@Column(name = "first_name")
 	private String firstName;
 
-//	@Column(name = "last_name")
 	private String lastName;
 
-//	@Column(name = "email_address")
 	private String emailAddress;
 
-//	@Column(name = "gender")
 	private String gender;
 
-//	@Column(name = "phone_number")
 	private String phoneNumber;
 
-//	@Column(name = "status")
 	private Boolean status;
 
-//	@OneToMany(mappedBy = "contact")
-	private List<Address> addresses;
+	private int accountId;
 
+	private List<Address> addresses;
 
 	public Contact() {
 
 	}
-
-	// Constructor to directly set all the properties:
+	
 	public Contact(String firstName, String lastName, String emailAddress, String gender, String phoneNumber,
 			Boolean status) {
 		super();
@@ -112,6 +100,14 @@ public class Contact implements Serializable{
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public int getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
 	public List<Address> getAddresses() {

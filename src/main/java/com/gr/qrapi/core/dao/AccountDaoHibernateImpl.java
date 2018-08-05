@@ -9,12 +9,7 @@ import com.gr.common.dao.AbstractHibernateDao;
 import com.gr.common.dao.DaoException;
 import com.gr.common.dao.DaoManager;
 import com.gr.qrapi.core.model.Account;
-import com.gr.qrapi.core.model.Address;
-import com.gr.qrapi.core.model.Contact;
 
-/**
- * @author ufarooq
- */
 public class AccountDaoHibernateImpl extends AbstractHibernateDao<Account, Integer> implements AccountDao {
 
 	public static AccountDao getDao() {
@@ -40,6 +35,25 @@ public class AccountDaoHibernateImpl extends AbstractHibernateDao<Account, Integ
 	}
 
 	@Override
+	public Account getAccount(int id) {
+		Session session = null;
+		Account account = null;
+		try {
+			session = getSession();
+			session.beginTransaction();
+
+			account = (Account) session.get(Account.class, id);
+
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			throw new DaoException(ex);
+		} finally {
+			closeSession(session);
+		}
+		return account;
+	}
+
+	@Override
 	public int addNewAccount(Account account) {
 		Session session = null;
 		int accountID = -1;
@@ -51,7 +65,7 @@ public class AccountDaoHibernateImpl extends AbstractHibernateDao<Account, Integ
 		} catch (Exception e) {
 			throw new DaoException(e);
 		} finally {
-			session.close();
+			closeSession(session);
 		}
 		return accountID;
 	}
@@ -59,76 +73,41 @@ public class AccountDaoHibernateImpl extends AbstractHibernateDao<Account, Integ
 	@Override
 	public Account updateAccount(int id, Account accountNew) {
 		Session session = null;
-		Account account = null;
 		try {
 			session = getSession();
 			session.beginTransaction();
 
-			account = (Account) session.get(Account.class, id);
-			if (accountNew.getName() != null)
-				account.setName(accountNew.getName());
-			if (accountNew.getEmailDomain() != null)
-				account.setEmailDomain(accountNew.getEmailDomain());
-			if (accountNew.getTimeZoneCity() != null)
-				account.setTimeZoneCity(accountNew.getTimeZoneCity());
-			session.update(account);
-
+			String hql = "UPDATE Account SET USERNAME = :newUserName, PASSWORD = :newPass,"
+					+ " NAME = :newName, EMAILDOMAIN = :newEmail, TIMEZONECITY = :newTimeZone WHERE ID = :Id";
+			session.createQuery(hql).setString("newUserName", accountNew.getUserName())
+					.setString("newPass", accountNew.getPassword()).setString("newName", accountNew.getName())
+					.setString("newEmail", accountNew.getEmailDomain())
+					.setString("newTimeZone", accountNew.getTimeZoneCity()).setString("Id", "" + id).executeUpdate();
 			session.getTransaction().commit();
 		} catch (Exception ex) {
 			throw new DaoException(ex);
 		} finally {
-			session.close();
+			closeSession(session);
 		}
-		return account;
+		return accountNew;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public int deleteAccount(int id) {
 		Session session = null;
-		Account account = null;
 		try {
 			session = getSession();
 			session.beginTransaction();
-
-			account = (Account) session.get(Account.class, id);
-			String hql = "FROM Contact WHERE account = " + id;
-			ArrayList<Contact> contacts = (ArrayList<Contact>) session.createQuery(hql).list();
-			for (Contact contact : contacts) {
-				ArrayList<Address> addresses = (ArrayList<Address>) contact.getAddresses();
-				session.delete(contact);
-				for (Address address : addresses) {
-					session.delete(address);
-				}
-			}
-			session.delete(account);
+			String hql = "DELETE FROM Account WHERE ID = :Id";
+			session.createQuery(hql).setString("Id", "" + id).executeUpdate();
 
 			session.getTransaction().commit();
 		} catch (Exception ex) {
 			throw new DaoException(ex);
 		} finally {
-			session.close();
+			closeSession(session);
 		}
 		return id;
-	}
-
-	@Override
-	public Account getAccount(int id) {
-		Session session = null;
-		Account account = null;
-		try {
-			session = getSession();
-			session.beginTransaction();
-			
-			account = (Account) session.get(Account.class, id);
-			
-			session.getTransaction().commit();
-		} catch (Exception ex) {
-			throw new DaoException(ex);
-		} finally {
-			session.close();
-		}
-		return account;
 	}
 
 }

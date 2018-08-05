@@ -1,5 +1,6 @@
 package com.gr.qrapi.core.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,9 +9,6 @@ import com.gr.common.service.ServiceManager;
 import com.gr.qrapi.core.dao.AccountDaoHibernateImpl;
 import com.gr.qrapi.core.model.Account;
 
-/**
- * @author ufarooq
- */
 @Stateless
 public class AccountService implements AccountServiceLocal {
 
@@ -42,5 +40,16 @@ public class AccountService implements AccountServiceLocal {
 	@Override
 	public Account getAccount(int id) {
 		return AccountDaoHibernateImpl.getDao().getAccount(id);
+	}
+
+	@Override
+	public boolean checkLogin(String userName, String pass) {
+		ArrayList<Account> accounts=AccountDaoHibernateImpl.getDao().viewAllAccounts();
+		for (Account account: accounts) {
+			if(account.getUserName().equals(userName)&&account.getPassword().equals(pass)) {
+				return true;
+			}	
+		}
+		return false;
 	}
 }
