@@ -56,23 +56,24 @@ public class ContactDaoHibernateImpl extends AbstractHibernateDao<Contact, Integ
 	}
 
 	@Override
-	public int addContactinAccount(Contact contact, int AccountID) {
+	public Contact addContactinAccount(Contact contact, int AccountID) {
 		Session session = null;
-		int contactID = -1;
+		Contact addedContact;
 		try {
 			session = getSession();
 			session.beginTransaction();
 
 			contact.setAccountId(AccountID);
-			contactID = (Integer) session.save(contact);
+			int id = (int) session.save(contact);
 
+			addedContact = (Contact) session.get(Contact.class, id);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException(e);
 		} finally {
 			closeSession(session);
 		}
-		return contactID;
+		return addedContact;
 	}
 
 	@Override
@@ -196,15 +197,18 @@ public class ContactDaoHibernateImpl extends AbstractHibernateDao<Contact, Integ
 		try {
 			session = getSession();
 			session.beginTransaction();
-			
+
+			Address address = (Address) session.get(Address.class, AddressId);
+
 			boolean currentBool = addressNew.getCurrent();
 			int current = 0;
 			if (currentBool) {
-				//if updated address is currentAddress
-				//then remove the current status of current address
-				String hql = "UPDATE Address SET CURRENT = :currentNew" + " WHERE CURRENT = :current";
-				session.createQuery(hql).setString("currentNew", "" + 0)
-						.setString("current", "" + 1).executeUpdate();
+				// if updated address is currentAddress
+				// then remove the current status of current address
+				String hql = "UPDATE Address SET CURRENT = :currentNew"
+						+ " WHERE CURRENT = :current AND CONTACT = :contactID";
+				session.createQuery(hql).setString("currentNew", "" + 0).setString("current", "" + 1)
+						.setString("contactID", "" + address.getContactId()).executeUpdate();
 				current = 1;
 			}
 			String hqlUpdatethis = "UPDATE Address SET STREETADDRESS = :street, CITY = :city,"
@@ -240,6 +244,30 @@ public class ContactDaoHibernateImpl extends AbstractHibernateDao<Contact, Integ
 			closeSession(session);
 		}
 		return addressId;
+	}
+
+	@Override
+	public Address getCurrentAddress(int contactId) {
+		List<Address> addresses = viewAllAddressesOfContact(contactId);
+		for (Address address : addresses) {
+			if (address.getCurrent())
+				return address;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Address> getAllCurrentAddresses(int Accountid) {
+		List<Address> currentAddresses = new ArrayList<>();
+		List<Contact> contacts = viewAllContactsOfAccount(Accountid);
+		for (Contact contact : contacts) {
+			List<Address> addresses = contact.getAddresses();
+			for (Address address : addresses) {
+				if(address.getCurrent())
+					currentAddresses.add(address);
+			}
+		}
+		return currentAddresses;
 	}
 
 }

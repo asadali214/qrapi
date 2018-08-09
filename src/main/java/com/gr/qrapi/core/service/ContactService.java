@@ -22,7 +22,7 @@ public class ContactService implements ContactServiceLocal {
 	}
 
 	@Override
-	public int addContactinAccount(Contact contact, int AccountID) {
+	public Contact addContactinAccount(Contact contact, int AccountID) {
 		return ContactDaoHibernateImpl.getDao().addContactinAccount(contact, AccountID);
 	}
 
@@ -64,6 +64,16 @@ public class ContactService implements ContactServiceLocal {
 	@Override
 	public int deleteAddressOfContact(int addressId) {
 		return ContactDaoHibernateImpl.getDao().deleteAddressOfContact(addressId);
+	}
+
+	@Override
+	public Address getCurrentAddress(int contactId) {
+		return ContactDaoHibernateImpl.getDao().getCurrentAddress(contactId);
+	}
+
+	@Override
+	public List<Address> getAllCurrentAddresses(int Accountid) {
+		return ContactDaoHibernateImpl.getDao().getAllCurrentAddresses(Accountid);
 	}
 
 	

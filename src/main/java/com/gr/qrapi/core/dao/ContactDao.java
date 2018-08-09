@@ -11,7 +11,7 @@ public interface ContactDao extends GenericDao<Contact, Integer> {
 
 	public Contact getContact(int id);
 
-	public int addContactinAccount(Contact contact, int AccountID);
+	public Contact addContactinAccount(Contact contact, int AccountID);
 
 	public Contact updateContactOfAccount(int ContactId, Contact contactNew);
 
@@ -26,5 +26,9 @@ public interface ContactDao extends GenericDao<Contact, Integer> {
 	public Address updateAddress(int AddressId, Address addressNew);
 
 	public int deleteAddressOfContact(int addressId);
+	
+	public Address getCurrentAddress(int contactId);
+	
+	public List<Address> getAllCurrentAddresses(int Accountid);
 
 }

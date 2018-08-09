@@ -6,9 +6,6 @@ import javax.ejb.Local;
 
 import com.gr.qrapi.core.model.Account;
 
-/**
- * @author ufarooq
- */
 @Local
 public interface AccountServiceLocal {
 
@@ -17,5 +14,5 @@ public interface AccountServiceLocal {
 	Account updateAccount(int id, Account account);
 	int deleteAccount(int id);
 	Account getAccount(int id);
-	boolean checkLogin(String userName,String pass);
+	Account checkLogin(String userName,String pass);
 }

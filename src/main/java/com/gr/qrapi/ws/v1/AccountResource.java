@@ -3,7 +3,9 @@ package com.gr.qrapi.ws.v1;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,36 +35,30 @@ public class AccountResource {
 		return service.getAccount(id);
 	}
 
-	@PUT
+	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/add/{userName}/{pass}/{name}/{email}/{timeZone}")
-	public String addNewAccount(@PathParam("userName") String username, @PathParam("pass") String pass,
-			@PathParam("name") String name, @PathParam("email") String email, @PathParam("timeZone") String timeZone) {
-		Account account = new Account(name, email, timeZone, username, pass);
+	@Path("/add")
+	public String addNewAccount(Account account) {
 		return "{Added Account at id: " + service.addNewAccount(account) + "}";
 	}
 
 	@PUT
-	@Path("/update/{id}/{userName}/{pass}/{name}/{email}/{timeZone}")
-	public Account updateAccount(@PathParam("userName") String username, @PathParam("pass") String pass,
-			@PathParam("id") int id, @PathParam("name") String name, @PathParam("email") String email,
-			@PathParam("timeZone") String timeZone) {
-		Account account = new Account(name, email, timeZone, username, pass);
+	@Path("/update/{id}")
+	public Account updateAccount(@PathParam("id") int id, Account account) {
 		return service.updateAccount(id, account);
 	}
 
-	@PUT
+	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/delete/{id}")
 	public String deleteAccount(@PathParam("id") int id) {
 		return "{Deleted Account at id: " + service.deleteAccount(id) + "}";
 	}
 
-	@PUT
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/check/{user}/{pass}")
-	public String checkLogin(@PathParam("user") String user, @PathParam("pass") String pass) {
-		return "Login is: " + service.checkLogin(user, pass);
+	@POST
+	@Path("/check")
+	public Account checkLogin(Account account) {
+		return service.checkLogin(account.getUserName(), account.getPassword());
 	}
 
 }

@@ -43,13 +43,14 @@ public class AccountService implements AccountServiceLocal {
 	}
 
 	@Override
-	public boolean checkLogin(String userName, String pass) {
+	public Account checkLogin(String userName, String pass) {
+		
 		ArrayList<Account> accounts=AccountDaoHibernateImpl.getDao().viewAllAccounts();
 		for (Account account: accounts) {
 			if(account.getUserName().equals(userName)&&account.getPassword().equals(pass)) {
-				return true;
+				return account;
 			}	
 		}
-		return false;
+		return null;
 	}
 }

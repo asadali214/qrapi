@@ -12,7 +12,7 @@ public interface ContactServiceLocal {
 
 	List<Contact> viewAllContactsOfAccount(int AccountId);
 
-	int addContactinAccount(Contact contact, int AccountID);
+	Contact addContactinAccount(Contact contact, int AccountID);
 
 	Contact updateContactOfAccount(int ContactId, Contact contactNew);
 
@@ -29,4 +29,8 @@ public interface ContactServiceLocal {
 	Address updateAddress(int AddressId, Address addressNew);
 
 	int deleteAddressOfContact(int addressId);
+
+	Address getCurrentAddress(int contactId);
+
+	List<Address> getAllCurrentAddresses(int Accountid);
 }
